@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Werk;
-use App\Werks;
 
 // use CreateWerksTable;
 
@@ -17,7 +16,8 @@ class WerkController extends Controller
      */
     public function index()
     {
-        return view('werken.create');
+        $werken = Werk::all();
+        return view('werken.index', compact('werken'));
     }
 
     /**
@@ -28,6 +28,7 @@ class WerkController extends Controller
     public function create()
     {
         //
+        // return view('werken.create');
     }
 
     /**
@@ -44,12 +45,13 @@ class WerkController extends Controller
             'blog' => 'required',
         ]);
 
-        $werk = new Werks([
+        $werk = new Werk([
             'title' => $request->get('title'),
             'blog' => $request->get('blog'),
         ]);
         $werk->save();
-        return redirect('/werken')->with('succesvol', 'Werk opgeslagen !');
+        return redirect('index')->with('succesvol', 'Werk opgeslagen !');
+        // return view('werken.index');
     }
 
     /**
@@ -61,6 +63,7 @@ class WerkController extends Controller
     public function show($id)
     {
         //
+        return __METHOD__ . ':' . $id;
     }
 
     /**
@@ -72,6 +75,8 @@ class WerkController extends Controller
     public function edit($id)
     {
         //
+        $werk = Werk::find($id);
+        return view('werken.edit', compact('werk'));
     }
 
     /**
@@ -82,8 +87,19 @@ class WerkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    { {
+            $request->validate([
+                'title' => 'required',
+                'blog' => 'required',
+            ]);
+
+            $werk = Werk::find($id);
+            $werk->title = $request->get('title');
+            $werk->blog = $request->get('blog');
+            $werk->save();
+
+            return redirect('/werken')->with('success', "Werk updated!");
+        }
     }
 
     /**
@@ -95,5 +111,6 @@ class WerkController extends Controller
     public function destroy($id)
     {
         //
+        return __METHOD__ . ':' . $id;
     }
 }

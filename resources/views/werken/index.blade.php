@@ -13,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($werken as $werk)
+                @foreach($werken ?? '' as $werk)
                 <tr>
                     <td>{{$werk->id}}</td>
                     <td>{{$werk->title}}</td>

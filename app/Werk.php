@@ -7,8 +7,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Werks extends Model
+class Werk extends Model
 {
+    protected $fillable = ['title', 'blog'];
     /**
      * Run the migrations.
      * 
