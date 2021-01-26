@@ -60,7 +60,7 @@ class WerkController extends Controller
         $werk = new Werk([
             'title' => $request->get('title'),
             'blog' => $request->get('blog'),
-            'imageUrl' => $this->saveimg($request),
+            'imageUrl' => $request->get('imageUrl')
         ]);
         $this->saveimg($request);
         $werk->save();
@@ -90,8 +90,9 @@ class WerkController extends Controller
     public function show($id)
     {
         $werk = Werk::find($id);
+        // echo $werk;
         // return ;
-        return view('werken.edit', ['werk' => $werk]);
+        return view('werken.edit', ['werk' => $werk, 'id' => $id]);
     }
 
     /**
@@ -111,21 +112,16 @@ class WerkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int $id 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'blog' => 'required',
-        //     'imageUrl' => 'required',
-        // ]);
+        $title = $request->input('title');
+        $blog = $request->input('blog');
+        $img = $request->input('imageUrl');
 
-        $werk = Werk::find($request->id);
-        $werk->title = $request->title;
-        $werk->blog = $request->blog;
-        $werk->imageUrl = $request->imageUrl;
-        $werk->save();
+        DB::update("UPDATE `werks` SET `title` = ?, `blog` = ?, `imageUrl` = ? WHERE id=?", [$title, $blog, $img, $id]);
 
         return redirect('/werken')->with('success', "Werk updated!");
     }

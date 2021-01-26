@@ -16,7 +16,7 @@
                 </ul>
             </div>
             @endif
-            <form method="POST" action="" enctype="multipart/form-data">
+            <form method="post" action="{{route('werken.update', $werk->id)}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Title:</label>
@@ -25,12 +25,12 @@
 
                 <div class="form-group">
                     <label for="blog">Blog</label>
-                    <input type="text" class="form-control" name="blog" value="{{$werk->title}}">
+                    <input type="text" class="form-control" name="blog" value="{{$werk->blog}}">
                 </div>
 
                 <div class="form-group">
                     <label for="imageUrl">image</label>
-                    <input type="file" class="form-control" name="imageUrl" value="{{$werk->title}}">
+                    <input type="file" class="form-control" name="imageUrl" value="{{$werk->imageUrl}}">
                 </div>
 
                 <button type="submit" class="btn btn-primary-outline">Toevoegen</button>
