@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Session\Session;
+use App\Http\Controllers\WerkController;
 
 
 class AuthController extends Controller
@@ -27,13 +28,13 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-
+        echo $request;
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('werken');
         }
-        return Redirect::to('login')->withSuccess('Oops! you have entered invalid credentials');
+        return Redirect::to('werken')->withSuccess('Oops! you have entered invalid credentials');
     }
 
     public function postRegitration(Request $request)
@@ -53,7 +54,7 @@ class AuthController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('dashboard');
+            return view('werken.index', compact('werken'));
         }
         return Redirect::to("login")->withSuccess('you do not have access');
     }

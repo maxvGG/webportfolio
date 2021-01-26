@@ -9,6 +9,7 @@
                     <td>ID</td>
                     <td>Title</td>
                     <td>Blog</td>
+                    <td>Image</td>
                     <td colspan=2>Actions</td>
                 </tr>
             </thead>
@@ -19,7 +20,11 @@
                     <td>{{$werk->title}}</td>
                     <td>{{$werk->blog}}</td>
                     <td>
-                        <a href="{{ route('werken.edit',$werk->id)}}" class="btn btn-primary">Edit</a>
+                        <img src="storage/{{$werk->imageUrl}}" alt="" style="width: 100px;">
+
+                    </td>
+                    <td>
+                        <a href="{{ route('werken.show',$werk->id)}}" class="btn btn-primary">Edit</a>
                     </td>
                     <td>
                         <form action="{{ route('werken.destroy', $werk->id)}}" method="post">
@@ -33,5 +38,14 @@
             </tbody>
         </table>
     </div>
+    <form action="{{route('werken.create')}}" method="get">
+        <button type="submit" class="btn btn-primary-outline">create item</button>
+    </form>
+    <form action="{{url('logout')}}" method="HEADER" id="logOutForm">
+        {{ csrf_field() }}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">log out</button>
+        </div>
+    </form>
 </div>
 @endsection

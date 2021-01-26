@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Werk;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Inline\Element\Image;
+use Illuminate\Support\Facades\Storage;
+
 
 // use CreateWerksTable;
 
@@ -16,8 +23,12 @@ class WerkController extends Controller
      */
     public function index()
     {
-        $werken = Werk::all();
-        return view('werken.index', compact('werken'));
+
+        if (Auth::check()) {
+            $werken = Werk::all();
+            return view('werken.index', compact('werken'));
+        }
+        return Redirect::to("login")->withSuccess('you do not have access');
     }
 
     /**
@@ -28,7 +39,7 @@ class WerkController extends Controller
     public function create()
     {
         //
-        // return view('werken.create');
+        return view('werken.create');
     }
 
     /**
@@ -43,17 +54,33 @@ class WerkController extends Controller
         $request->validate([
             'title' => 'required',
             'blog' => 'required',
+            'imageUrl' => 'required|file|image',
         ]);
 
         $werk = new Werk([
             'title' => $request->get('title'),
             'blog' => $request->get('blog'),
+            'imageUrl' => $this->saveimg($request),
         ]);
+        $this->saveimg($request);
         $werk->save();
-        return redirect('index')->with('succesvol', 'Werk opgeslagen !');
-        // return view('werken.index');
-    }
 
+        return redirect('werken')->with('succesvol', 'Werk opgeslagen !');
+    }
+    /**
+     * upload img to directory
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function saveimg(Request $request)
+    {
+        // move img to public folder
+        $imgname = $request->imageUrl->store('work');
+
+        // get and return image name to save to the db; 
+        return $imgname;
+    }
     /**
      * Display the specified resource.
      *
@@ -62,8 +89,9 @@ class WerkController extends Controller
      */
     public function show($id)
     {
-        //
-        return __METHOD__ . ':' . $id;
+        $werk = Werk::find($id);
+        // return ;
+        return view('werken.edit', ['werk' => $werk]);
     }
 
     /**
@@ -72,34 +100,34 @@ class WerkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
-        $werk = Werk::find($id);
-        return view('werken.edit', compact('werk'));
+        // //
+        echo Werk::find($request);
+        return view('werken.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    { {
-            $request->validate([
-                'title' => 'required',
-                'blog' => 'required',
-            ]);
+    public function update(Request $request)
+    {
+        // $request->validate([
+        //     'title' => 'required',
+        //     'blog' => 'required',
+        //     'imageUrl' => 'required',
+        // ]);
 
-            $werk = Werk::find($id);
-            $werk->title = $request->get('title');
-            $werk->blog = $request->get('blog');
-            $werk->save();
+        $werk = Werk::find($request->id);
+        $werk->title = $request->title;
+        $werk->blog = $request->blog;
+        $werk->imageUrl = $request->imageUrl;
+        $werk->save();
 
-            return redirect('/werken')->with('success', "Werk updated!");
-        }
+        return redirect('/werken')->with('success', "Werk updated!");
     }
 
     /**
@@ -111,6 +139,7 @@ class WerkController extends Controller
     public function destroy($id)
     {
         //
-        return __METHOD__ . ':' . $id;
+        DB::delete('delete from werks where id = ?', [$id]);
+        return redirect('/werken')->with('success', "Werk Deleted!");
     }
 }

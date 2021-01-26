@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
 Route::get('login',              'AuthController@index');
@@ -28,3 +28,7 @@ Route::get('dashboard',          'AuthController@dashboard');
 Route::get('logout',             'AuthController@logout');
 
 Route::resource('werken', 'WerkController');
+
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

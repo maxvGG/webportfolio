@@ -13,8 +13,11 @@ class CreateWerksTable extends Migration
      */
     public function up()
     {
-        Schema::create('werks', function (Blueprint $table) {
+        Schema::create('works', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->MediumText('description');
+            $table->string('imageUrl');
             $table->timestamps();
         });
     }
