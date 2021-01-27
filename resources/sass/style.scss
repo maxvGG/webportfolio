@@ -1,3 +1,6 @@
+body {
+    overflow: hidden;
+}
 .container-fluid {
     padding: 0;
     margin: 0;
@@ -8,9 +11,13 @@
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
+    width: auto;
 }
 .orange {
-    color: rgba($color: $orange, $alpha: 1) !important;
+    color: rgba($color: $orange, $alpha: 1);
+}
+.orange:hover {
+    color: white;
 }
 .nav-item:hover {
     color: rgba($color: $orange, $alpha: 1) !important;
@@ -32,4 +39,33 @@ span {
     background-color: rgba($color: #161616, $alpha: 1) !important;
     width: 100vw;
     height: 100vh;
+}
+
+.primary-word-sub {
+    margin: 0 0.5rem;
+    height: 4rem;
+    line-height: 2;
+    vertical-align: top;
+    display: inline-block;
+    font-size: 2.5em;
+    overflow: hidden;
+}
+
+.primary-word-sub__top {
+    margin-bottom: 1rem;
+}
+.primary-word-sub__bottom {
+    color: orange;
+}
+.primary-word-sub * {
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.primary-word-sub--active * {
+    -webkit-transform: translateY(-2.7rem);
+    transform: translateY(-2.7rem);
+    line-height: 1.35;
+}
+sub {
+    line-height: 2;
 }

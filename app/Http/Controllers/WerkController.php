@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use League\CommonMark\Inline\Element\Image;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\File;
 
 
 // use CreateWerksTable;
@@ -60,7 +61,7 @@ class WerkController extends Controller
         $werk = new Werk([
             'title' => $request->get('title'),
             'blog' => $request->get('blog'),
-            'imageUrl' => $request->get('imageUrl')
+            'imageUrl' => $this->saveimg($request),
         ]);
         $this->saveimg($request);
         $werk->save();
@@ -136,6 +137,14 @@ class WerkController extends Controller
     {
         //
         DB::delete('delete from werks where id = ?', [$id]);
+        // $users = DB::select('select imageUrl from werks where id = ?', [$id]);
+
+        // return view('user.index', ['users' => $users]);
+        //  DB::select('select imageUrl from werks where id = ?', [$id]);
+        // $file = new File();
+        // $path = 'storage';
+        // var_dump($path, $imgName);
+        // Storage::delete($path, $imgName);
         return redirect('/werken')->with('success', "Werk Deleted!");
     }
 }

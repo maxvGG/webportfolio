@@ -32,9 +32,41 @@
     </header>
     <main class="container-fluid bg-dark text-light">
         <section class="about">
-            <h1>Hey, I'm <span class="orange">Max van Gorp</span></h1>
-            <span>I'm a Webdeveloper</span>
-            <span>looking to create stunning websites</span>
+            <h1 aria-label="Hey, I'm Max van Gorp">Hey, I'm <span class="orange">Max van Gorp</span></h1>
+            <sub>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">I'm</div>
+                    <div class="primary-word-sub__bottom">I'm</div>
+                </div>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">a</div>
+                    <div class="primary-word-sub__bottom">a</div>
+                </div>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">Webdeveloper</div>
+                    <div class="primary-word-sub__bottom">Webdeveloper</div>
+                </div>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">looking</div>
+                    <div class="primary-word-sub__bottom">looking</div>
+                </div>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">to</div>
+                    <div class="primary-word-sub__bottom">to</div>
+                </div>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">create</div>
+                    <div class="primary-word-sub__bottom">create</div>
+                </div>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">stunning</div>
+                    <div class="primary-word-sub__bottom">stunning</div>
+                </div>
+                <div class="primary-word-sub">
+                    <div class="primary-word-sub__top">websites</div>
+                    <div class="primary-word-sub__bottom">websites</div>
+                </div>
+            </sub>
         </section>
     </main>
     <script src="{{ url('assets/js/script.js') }}"></script>
