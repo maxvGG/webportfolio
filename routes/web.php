@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/work', function () {
+    return view('work');
+});
+
 Route::get('/login', function () {
     return view('login');
 });

@@ -33,7 +33,7 @@
                     <input type="file" class="form-control" name="imageUrl" value="{{$werk->imageUrl}}">
                 </div>
 
-                <button type="submit" class="btn btn-primary-outline">Toevoegen</button>
+                <button type="submit" class="btn btn-primary-outline" style="color: white;">Toevoegen</button>
             </form>
         </div>
         <!-- </form> -->

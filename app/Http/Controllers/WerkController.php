@@ -118,13 +118,18 @@ class WerkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $title = $request->input('title');
-        $blog = $request->input('blog');
-        $img = $request->input('imageUrl');
-
-        DB::update("UPDATE `werks` SET `title` = ?, `blog` = ?, `imageUrl` = ? WHERE id=?", [$title, $blog, $img, $id]);
-
-        return redirect('/werken')->with('success', "Werk updated!");
+        // $title = $request->input('title');
+        // $blog = $request->input('blog');
+        // $img = $request->input('imageUrl');
+        $request->update([
+            'title' => $request->input('title'),
+            'blog' => $request->input('blog'),
+            'img' => $request->input('imageUrl'),
+            'id' => $id,
+        ]);
+        // $updated = DB::update("UPDATE `werks` SET `title` = ?, `blog` = ?, `imageUrl` = ? WHERE id=?", [$title, $blog, $img, $id]);
+        // var_dump($updated);
+        // return redirect('/werken')->with('success', "Werk updated!");
     }
 
     /**
@@ -135,16 +140,11 @@ class WerkController extends Controller
      */
     public function destroy($id)
     {
-        //
-        DB::delete('delete from werks where id = ?', [$id]);
-        // $users = DB::select('select imageUrl from werks where id = ?', [$id]);
-
-        // return view('user.index', ['users' => $users]);
-        //  DB::select('select imageUrl from werks where id = ?', [$id]);
-        // $file = new File();
-        // $path = 'storage';
-        // var_dump($path, $imgName);
-        // Storage::delete($path, $imgName);
+        $werk = Werk::find($id);
+        $old_image = $werk->file;
+        unlink(storage_path('app/public/work/' . $old_image));
+        $werk->delete();
+        // DB::delete('delete from werks where id = ?', [$id]);
         return redirect('/werken')->with('success', "Werk Deleted!");
     }
 }

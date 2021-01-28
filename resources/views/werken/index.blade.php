@@ -1,5 +1,6 @@
 @extends('base')
 @section('main')
+
 <div class="row">
     <div class="col-sm-12">
         <h1 class="display-3">Werken</h1>
@@ -39,7 +40,7 @@
         </table>
     </div>
     <form action="{{route('werken.create')}}" method="get">
-        <button type="submit" class="btn btn-primary-outline">create item</button>
+        <button type="submit" class="btn btn-primary-outline" style="color: white;">create item</button>
     </form>
     <form action="{{url('logout')}}" method="HEADER" id="logOutForm">
         {{ csrf_field() }}

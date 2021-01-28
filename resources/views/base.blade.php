@@ -1,25 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>dashboard</title>
+    <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Max van Gorp">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('assets/css/app.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="bg-dark">
-    <div>
+    <div class="container-fluid">
+        <header>
+            <nav class="navbar navbar-expand-md mb-5">
+                <div class="navbar-collapse collapse w-100">
+                    <a href="/" class="navbar-brand text-white">Home</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white mr-3" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white mr-3" href="{{url('work')}}">Work</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white mr-3" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
         @yield('main')
     </div>
+    <script src="{{ url('assets/js/script.js') }}"></script>
 </body>
 
 </html>
