@@ -25,10 +25,10 @@ class WerkController extends Controller
     public function index()
     {
 
-        // if (Auth::check()) {
-        $werken = Werk::all();
-        return view('werken.index', compact('werken'));
-        // }
+        if (Auth::check()) {
+            $werken = Werk::all();
+            return view('werken.index', compact('werken'));
+        }
         return Redirect::to("login")->withSuccess('you do not have access');
     }
     /**
@@ -61,9 +61,9 @@ class WerkController extends Controller
      */
     public function create()
     {
-        // if (Auth::check()) {
-        return view('werken.create');
-        // }
+        if (Auth::check()) {
+            return view('werken.create');
+        }
         return Redirect::to("login")->withSuccess('you do not have access');
     }
 
@@ -119,10 +119,10 @@ class WerkController extends Controller
      */
     public function show($id)
     {
-        // if (Auth::check()) {
-        $werk = Werk::find($id);
-        return view('werken.edit', ['werk' => $werk, 'id' => $id]);
-        // }
+        if (Auth::check()) {
+            $werk = Werk::find($id);
+            return view('werken.edit', ['werk' => $werk, 'id' => $id]);
+        }
         return Redirect::to("login")->withSuccess('you do not have access');
     }
 
@@ -134,10 +134,10 @@ class WerkController extends Controller
      */
     public function edit(Request $request)
     {
-        // if (Auth::check()) {
-        $werk = Werk::find($request);
-        return view('werken.edit', compact('werk'));
-        // }
+        if (Auth::check()) {
+            $werk = Werk::find($request);
+            return view('werken.edit', compact('werk'));
+        }
         return Redirect::to("login")->withSuccess('you do not have access');
     }
 

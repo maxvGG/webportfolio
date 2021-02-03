@@ -40,7 +40,7 @@
                     <label for="imageUrl">image</label>
                     <input type="file" class="form-control" name="imageUrl">
                 </div>
-                <button type="submit" class="btn contact-btn"><a href="#">Toevoegen</a></button>
+                <button type="submit" class="btn contact-btn">Toevoegen</button>
             </form>
         </div>
     </div>

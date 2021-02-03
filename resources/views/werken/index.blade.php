@@ -1,7 +1,7 @@
 @extends('base')
 @section('main')
 
-<div class="row">
+<div class="row container-fluid">
     <div class="col-sm-12">
         <h1 class="display-3">Werken</h1>
         <table class="table table-striped">
@@ -46,12 +46,13 @@
         </table>
     </div>
     <form action="{{route('werken.create')}}" method="get">
-        <button type="submit" class="btn btn-primary-outline" style="color: white;">create item</button>
+        <!-- <button type="submit" class="btn btn-primary-outline" style="color: white;">create item</button> -->
+        <input type="submit" value="create item" class="btn contact-btn" style="margin-right: 15px;" />
     </form>
     <form action="{{url('logout')}}" method="HEADER" id="logOutForm">
         {{ csrf_field() }}
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block btn-lg">log out</button>
+            <input type="submit" value="log out" class="btn contact-btn" />
         </div>
     </form>
 </div>
