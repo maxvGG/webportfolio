@@ -28,6 +28,6 @@
         </div>
         <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a>.</p>
     </form>
-    <!-- <div class="text-center">You have no account? <a href="{{ url('registration') }}">Register here!</a></div> -->
+    <div class="text-center">You have no account? <a href="{{ url('registration') }}">Register here!</a></div>
 </div>
 @endsection

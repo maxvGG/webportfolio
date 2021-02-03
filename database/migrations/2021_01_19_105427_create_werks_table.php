@@ -1,34 +1,39 @@
 <?php
 
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWerksTable extends Migration
+class Werk extends Model
 {
+    protected $fillable = ['title', 'blog', 'imageUrl', 'url', 'taal'];
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
     {
-        Schema::create('works', function (Blueprint $table) {
+        Schema::create('werks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->MediumText('description');
-            $table->string('imageUrl');
             $table->timestamps();
+            $table->string('title');
+            $table->mediumText('blog');
+            $table->string('imageUrl');
+            $table->string('url');
+            $table->string('taal');
         });
     }
-
     /**
      * Reverse the migrations.
-     *
+     * 
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('werks');
+        Schema::dropIfExists('werken');
     }
 }

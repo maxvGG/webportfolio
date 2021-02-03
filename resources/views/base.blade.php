@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title></title>
+    <title>Max van Gorp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -23,13 +23,13 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-white mr-3" href="#">About</a>
+                            <a class="nav-link text-white mr-3" href="{{url('about')}}">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white mr-3" href="{{url('work')}}">Work</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white mr-3" href="#">Contact</a>
+                            <a class="nav-link text-white mr-3" href="{{url('contact')}}">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -38,6 +38,8 @@
         @yield('main')
     </div>
     <script src="{{ url('assets/js/script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
 </body>
 
 </html>

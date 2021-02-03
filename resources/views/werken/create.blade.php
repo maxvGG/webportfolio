@@ -28,11 +28,19 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="url">Url</label>
+                    <input type="text" class="form-control" name="url">
+                </div>
+                <div class="form-group">
+                    <label for="taal">Taal</label>
+                    <input type="text" class="form-control" name="taal">
+                </div>
+
+                <div class="form-group">
                     <label for="imageUrl">image</label>
                     <input type="file" class="form-control" name="imageUrl">
                 </div>
-
-                <button type="submit" class="btn btn-primary-outline">Toevoegen</button>
+                <button type="submit" class="btn contact-btn"><a href="#">Toevoegen</a></button>
             </form>
         </div>
     </div>

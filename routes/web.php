@@ -20,8 +20,8 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/work', function () {
-    return view('work');
+Route::get('/about', function () {
+    return view('about');
 });
 
 Route::get('/login', function () {
@@ -33,8 +33,10 @@ Route::get('registration',       'AuthController@registration');
 Route::post('post-registration', 'AuthController@postRegitration');
 Route::get('dashboard',          'AuthController@dashboard');
 Route::get('logout',             'AuthController@logout');
+Route::get('work',               'WerkController@showwork');
 
 Route::resource('werken', 'WerkController');
+Route::get('/work/{project}', 'WerkController@showProject');
 
 // Auth::routes();
 

@@ -25,13 +25,35 @@ class WerkController extends Controller
     public function index()
     {
 
-        if (Auth::check()) {
-            $werken = Werk::all();
-            return view('werken.index', compact('werken'));
-        }
+        // if (Auth::check()) {
+        $werken = Werk::all();
+        return view('werken.index', compact('werken'));
+        // }
         return Redirect::to("login")->withSuccess('you do not have access');
     }
+    /**
+     * Display work
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function showwork()
+    {
 
+        $werken = Werk::all();
+        return view('work', compact('werken'));
+    }
+
+    /**
+     * Display project
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function showProject($id)
+    {
+        $werken = Werk::find($id);
+        // var_dump($werken);
+        return view('showWork', compact('werken'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -39,8 +61,10 @@ class WerkController extends Controller
      */
     public function create()
     {
-        //
+        // if (Auth::check()) {
         return view('werken.create');
+        // }
+        return Redirect::to("login")->withSuccess('you do not have access');
     }
 
     /**
@@ -56,13 +80,18 @@ class WerkController extends Controller
             'title' => 'required',
             'blog' => 'required',
             'imageUrl' => 'required|file|image',
+            'url' => 'required',
+            'taal' => 'required',
         ]);
 
         $werk = new Werk([
             'title' => $request->get('title'),
             'blog' => $request->get('blog'),
             'imageUrl' => $this->saveimg($request),
+            'url' => $request->get('url'),
+            'taal' => $request->get('taal'),
         ]);
+        // echo $request->url;
         $this->saveimg($request);
         $werk->save();
 
@@ -90,10 +119,11 @@ class WerkController extends Controller
      */
     public function show($id)
     {
+        // if (Auth::check()) {
         $werk = Werk::find($id);
-        // echo $werk;
-        // return ;
         return view('werken.edit', ['werk' => $werk, 'id' => $id]);
+        // }
+        return Redirect::to("login")->withSuccess('you do not have access');
     }
 
     /**
@@ -104,10 +134,13 @@ class WerkController extends Controller
      */
     public function edit(Request $request)
     {
-        // //
-        echo Werk::find($request);
-        return view('werken.edit');
+        // if (Auth::check()) {
+        $werk = Werk::find($request);
+        return view('werken.edit', compact('werk'));
+        // }
+        return Redirect::to("login")->withSuccess('you do not have access');
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -118,20 +151,20 @@ class WerkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $title = $request->input('title');
-        // $blog = $request->input('blog');
-        // $img = $request->input('imageUrl');
-        $request->update([
-            'title' => $request->input('title'),
-            'blog' => $request->input('blog'),
-            'img' => $request->input('imageUrl'),
-            'id' => $id,
-        ]);
-        // $updated = DB::update("UPDATE `werks` SET `title` = ?, `blog` = ?, `imageUrl` = ? WHERE id=?", [$title, $blog, $img, $id]);
-        // var_dump($updated);
-        // return redirect('/werken')->with('success', "Werk updated!");
-    }
 
+        $werk = Werk::find($id);
+        $werk->title = $request->get('title');
+        $werk->blog = $request->get('blog');
+        $werk->url = $request->get('url');
+        $werk->taal = $request->get('taal');
+
+        $old_image = $werk->imageUrl;
+        unlink(storage_path('app/public/' . $old_image));
+        $werk->imageUrl = $this->saveimg($request);
+        $werk->save();
+
+        return redirect('/werken')->with('success', "Werk updated!");
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -141,10 +174,9 @@ class WerkController extends Controller
     public function destroy($id)
     {
         $werk = Werk::find($id);
-        $old_image = $werk->file;
-        unlink(storage_path('app/public/work/' . $old_image));
+        $old_image = $werk->imageUrl;
+        unlink(storage_path('app/public/' . $old_image));
         $werk->delete();
-        // DB::delete('delete from werks where id = ?', [$id]);
         return redirect('/werken')->with('success', "Werk Deleted!");
     }
 }

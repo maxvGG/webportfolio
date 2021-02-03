@@ -11,6 +11,8 @@
                     <td>Title</td>
                     <td>Blog</td>
                     <td>Image</td>
+                    <td>Url</td>
+                    <td>taal</td>
                     <td colspan=2>Actions</td>
                 </tr>
             </thead>
@@ -24,6 +26,10 @@
                         <img src="storage/{{$werk->imageUrl}}" alt="" style="width: 100px;">
 
                     </td>
+                    <td>
+                        {{$werk->url}}
+                    </td>
+                    <td>{{$werk->taal}}</td>
                     <td>
                         <a href="{{ route('werken.show',$werk->id)}}" class="btn btn-primary">Edit</a>
                     </td>

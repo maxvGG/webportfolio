@@ -1,7 +1,9 @@
 body {
-    overflow: hidden;
+    // overflow-x: hidden;
+    overflow-x: hidden;
     color: white;
 }
+
 * {
     color: white;
 }
@@ -11,11 +13,11 @@ body {
 }
 
 .about {
-    top: 40%;
-    left: 20%;
-    position: absolute;
-    transform: translate(-20%, -40%);
-    width: auto;
+    margin-top: 10%;
+    // left: 20%;
+    // position: absolute;
+    // transform: translate(-20%, -40%);
+    // width: auto;
 }
 .orange {
     color: rgba($color: $orange, $alpha: 1);
@@ -80,6 +82,7 @@ h1 {
 .contact-btn {
     border-radius: 2px;
     border: 1px solid $orange;
+    color: white;
 }
 
 .contact-btn a {
@@ -91,5 +94,159 @@ h1 {
 
     a {
         color: #161616;
+    }
+}
+.text {
+    opacity: 0;
+    color: rgba($color: $orange, $alpha: 1);
+    text-align: center;
+    z-index: 2;
+}
+.gallery .col-4 {
+    padding: 0px;
+}
+.column .img img {
+    width: 100%;
+    // min-width: 250px;
+    position: relative;
+    // filter: brightness(100%);
+}
+
+.title {
+    text-align: center;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.button {
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    font-size: 13px;
+    position: absolute;
+    padding: 7px 10px;
+    border: 1px solid $orange;
+}
+
+.button {
+    // a {
+    color: white;
+    text-decoration: none;
+    // }
+}
+.button:hover {
+    opacity: 1;
+    bottom: 30px;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    // a {
+    color: white;
+    text-decoration: none;
+    // }
+}
+.button:hover {
+    // a {
+    color: #161616;
+    // }
+    background-color: rgba($color: $orange, $alpha: 1);
+}
+.highlight {
+    color: $orange;
+}
+.bold {
+    font-weight: 450;
+    // color: #161616;
+}
+.column:hover {
+    .img img {
+        filter: opacity(50%);
+    }
+    .title {
+        opacity: 1;
+        top: 30px;
+
+        transition: all 0.3s ease-in-out;
+    }
+    .button {
+        opacity: 1;
+        bottom: 30px;
+        transition: all 0.3s ease-in-out;
+        color: white;
+        // a {
+        color: white;
+        text-decoration: none;
+        // }
+    }
+    .button:hover {
+        // a {
+        color: #161616;
+        // }
+        background-color: rgba($color: $orange, $alpha: 1);
+    }
+}
+header {
+    height: 100px;
+}
+.portrait {
+    padding: 15px;
+    border-radius: 1px;
+    display: inline-flex;
+    background-color: #313131;
+    img {
+        width: 350px;
+        border-radius: 1.5px;
+    }
+}
+.textarea {
+    display: block;
+    padding: calc(0.75em - 1px);
+    color: #161616;
+    resize: vertical;
+    max-width: 100%;
+    min-width: 100%;
+    height: 200px;
+}
+.control input {
+    color: #161616;
+    resize: vertical;
+    max-width: 100%;
+    min-width: 100%;
+    height: 50px;
+}
+.btn-special {
+    margin-top: 10px;
+}
+// media queries
+//tablet
+@media only screen and (max-width: 768px) {
+    .col-4 {
+        // padding: 0px;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .first {
+        width: 0;
+        flex: none;
+    }
+    .col-6 {
+        max-width: 100%;
+        // display: block;
+    }
+    .field {
+        width: 100vw;
+    }
+}
+//phone
+@media only screen and (max-width: 425px) {
+    .col-4 {
+        // padding: 0px;
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 }

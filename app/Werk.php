@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 
 class Werk extends Model
 {
-    protected $fillable = ['title', 'blog', 'imageUrl'];
+    protected $fillable = ['title', 'blog', 'imageUrl', 'url', 'taal'];
     /**
      * Run the migrations.
      * 
@@ -23,6 +23,8 @@ class Werk extends Model
             $table->string('title');
             $table->mediumText('blog');
             $table->string('imageUrl');
+            $table->string('url');
+            $table->string('taal');
         });
     }
     /**

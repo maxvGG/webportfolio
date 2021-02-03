@@ -18,6 +18,7 @@
             @endif
             <form method="post" action="{{route('werken.update', $werk->id)}}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" class="form-control" name="title" value="{{$werk->title}}">
@@ -26,6 +27,15 @@
                 <div class="form-group">
                     <label for="blog">Blog</label>
                     <input type="text" class="form-control" name="blog" value="{{$werk->blog}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="url">url</label>
+                    <input type="text" class="form-control" name="url" value="{{$werk->url}}">
+                </div>
+                <div class="form-group">
+                    <label for="taal">taal</label>
+                    <input type="text" class="form-control" name="taal" value="{{$werk->taal}}">
                 </div>
 
                 <div class="form-group">
