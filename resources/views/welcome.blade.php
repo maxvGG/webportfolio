@@ -4,10 +4,10 @@
 <main class="container-fluid bg-dark text-light">
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-6">
+        <div class="col-7">
             <section class="about">
                 <h1>Hey, <br> I'm <span class="orange"> Max, </span> <br> Webdeveloper. </h1>
-                <sub>
+                <div>
                     <div class="primary-word-sub">
                         <div class="primary-word-sub__top">I'm</div>
                         <div class="primary-word-sub__bottom">I'm</div>
@@ -40,7 +40,7 @@
                         <div class="primary-word-sub__top">websites</div>
                         <div class="primary-word-sub__bottom">websites</div>
                     </div>
-                </sub> <br>
+                </div> <br>
                 <form action="{{url('contact')}}">
                     <input type="submit" value="Contact Me!" class="btn contact-btn" />
                     <!-- <button class="btn contact-btn">Contact Me!</button> -->

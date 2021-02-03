@@ -1,10 +1,11 @@
 @extends('base')
 @section('main')
 <main>
-    <section class="d-flex justify-content-center">
-        <h1>My work</h1>
-    </section>
+
     <section class="flex">
+        <div class="d-flex justify-content-center">
+            <h1>My work</h1>
+        </div>
         <div class="gallery row">
             @foreach($werken ?? '' as $werk)
             <div class="project column col-4">
