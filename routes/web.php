@@ -14,21 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
-
-Route::get('/eigenhtml', function () {
-    return view('eigenhtml');
-});
-// Route::get('/contact', function () {
-//     return view('contact');
+Route::get('login',              'AuthController@index');
+Route::post('post-login',        'AuthController@postLogin');
+Route::get('registration',       'AuthController@registration');
+Route::post('post-registration', 'AuthController@postRegitration');
+Route::get('dashboard',          'AuthController@dashboard');
+Route::get('logout',             'AuthController@logout');
+// Route::get('/', function () {
+//     return view('welcome');
 // });
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/work', function () {
-    return view('work');
-});
 
-Route::get('/contact/{name?}', 'ContactController@index');
-Route::post('/contact/send', 'ContactController@ContactRequest');
+// Route::get('/eigenhtml', function () {
+//     return view('eigenhtml');
+// });
+// // Route::get('/contact', function () {
+// //     return view('contact');
+// // });
+// Route::get('/about', function () {
+//     return view('about');
+// });
+// Route::get('/work', function () {
+//     return view('work');
+// });
+
+// Route::get('/contact/{name?}', 'ContactController@index');
+// Route::post('/contact/send', 'ContactController@ContactRequest');
+
+
+
+// Route::get('/home', 'HomeController@index')->name('home');
