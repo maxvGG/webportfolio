@@ -13,14 +13,13 @@
                         {{$werken->blog}}
                     </p>
                     @if($werken->url != '')
-                    <!-- <button><a href="{{$werken->url}}">find out more</a></button> -->
                     <button class="btn contact-btn"><a href="{{$werken->url}}">github</a></button>
                     @endif
                 </div>
             </div>
 
         </div>
-        <!-- <div class="col-md-4"></div> -->
+
     </div>
 </section>
 @endsection
